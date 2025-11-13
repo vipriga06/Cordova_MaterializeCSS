@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Rock Band Searcher</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/index.css">
+    <meta name="theme-color" content="#2196f3">
+</head>
+<body>
+    <nav>
+        <div class="nav-wrapper blue">
+            <a href="#" class="brand-logo center">Rock Band Searcher</a>
+        </div>
+    </nav>
+
+    <main class="container">
+        <div class="row" style="margin-top: 24px;">
+            <div class="input-field col s12 m9">
+                <i class="material-icons prefix">search</i>
+                <input id="query" type="search" placeholder="Busca un grup o una cançó" autocomplete="off">
+                <!-- label left out to keep placeholder visible; prefix places icon to the left -->
+            </div>
+            <div class="col s12 m3">
+                <p>
+                    <label>
+                      <input name="type" type="radio" value="artist" checked />
+                      <span>Grups</span>
+                    </label>
+                    <label style="margin-left:12px">
+                      <input name="type" type="radio" value="recording" />
+                      <span>Cançons</span>
+                    </label>
+                </p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col s12">
+                <a id="btnSearch" class="btn blue">Cercar</a>
+                <a id="btnClear" class="btn grey lighten-1">Netejar</a>
+            </div>
+        </div>
+
+        <div class="section">
+            <h5>Resultats</h5>
+            <ul id="results" class="collection">
+            </ul>
+        </div>
+
+        <div class="section">
+            <h6>Prova amb curl</h6>
+            <pre>
+# Cerca d'artista (ex. Radiohead)
+curl -G "https://musicbrainz.org/ws/2/artist" --data-urlencode "query=Radiohead" -H "User-Agent: CordovaMaterialize/1.0 (tu@email.com)" -H "Accept: application/json"
+
+# Cerca de cançó (ex. Creep)
+curl -G "https://musicbrainz.org/ws/2/recording" --data-urlencode "query=recording:Creep" -H "User-Agent: CordovaMaterialize/1.0 (tu@email.com)" -H "Accept: application/json"
+            </pre>
+            <p class="grey-text">Nota: quan proves al navegador pot aparèixer CORS; a l'app Cordova normalment funciona sense proxy.</p>
+        </div>
+    </main>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="js/index.js"></script>
+
+</body>
+</html>
