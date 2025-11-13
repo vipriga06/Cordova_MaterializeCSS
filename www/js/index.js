@@ -67,15 +67,23 @@
 		items.forEach(function(a){
 			var li = document.createElement('li');
 			li.className = 'collection-item avatar';
+
+			var content = document.createElement('div');
+			content.className = 'ci-content';
+
 			var title = document.createElement('span');
 			title.className = 'title';
 			title.textContent = a.name + (a.disambiguation ? ' — ' + a.disambiguation : '');
 
-			var p = document.createElement('p');
+			var p = document.createElement('span');
+			p.className = 'meta';
 			var meta = [];
 			if(a.country) meta.push('País: ' + a.country);
 			if(a['life-span'] && a['life-span'].begin) meta.push('Inici: ' + a['life-span'].begin);
 			p.textContent = meta.join(' · ');
+
+			content.appendChild(title);
+			content.appendChild(p);
 
 			var aLink = document.createElement('a');
 			aLink.href = 'https://musicbrainz.org/artist/' + a.id;
@@ -83,8 +91,7 @@
 			aLink.className = 'secondary-content';
 			aLink.textContent = 'Veure';
 
-			li.appendChild(title);
-			li.appendChild(p);
+			li.appendChild(content);
 			li.appendChild(aLink);
 			$id('results').appendChild(li);
 		});
@@ -101,12 +108,21 @@
 		items.forEach(function(r){
 			var li = document.createElement('li');
 			li.className = 'collection-item';
+
+			var content = document.createElement('div');
+			content.className = 'ci-content';
+
 			var title = document.createElement('strong');
+			title.className = 'title';
 			title.textContent = r.title;
 
 			var credit = (r['artist-credit'] || []).map(function(ac){ return ac.name; }).join(', ');
-			var details = document.createElement('div');
+			var details = document.createElement('span');
+			details.className = 'meta';
 			details.textContent = (credit ? credit + ' · ' : '') + formatDuration(r.length);
+
+			content.appendChild(title);
+			content.appendChild(details);
 
 			var aLink = document.createElement('a');
 			aLink.href = 'https://musicbrainz.org/recording/' + r.id;
@@ -114,8 +130,7 @@
 			aLink.className = 'secondary-content';
 			aLink.textContent = 'Veure';
 
-			li.appendChild(title);
-			li.appendChild(details);
+			li.appendChild(content);
 			li.appendChild(aLink);
 			$id('results').appendChild(li);
 		});
