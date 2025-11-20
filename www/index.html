@@ -1,71 +1,91 @@
 <!DOCTYPE html>
-<html lang="ca">
-<head>
+<html lang="en">
+  <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Rock Band Searcher</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+      <meta http-equiv="Content-Security-Policy" content="default-src 'self' https://code.jquery.com https://fonts.gstatic.com https://fonts.googleapis.com data: gap: https://ssl.gstatic.com 'unsafe-eval'; script-src 'self' https://code.jquery.com 'unsafe-inline' 'unsafe-eval'; style-src 'self' https://fonts.googleapis.com 'unsafe-inline'; media-src *; img-src 'self' data:;">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta name="viewport" content="initial-scale=1, width=device-width, viewport-fit=cover">
+    <meta name="color-scheme" content="light dark">
+    <title>Cordova + Materialize</title>
+
+    <!-- Icons and CSS (local copies expected in www/css) -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/materialize.min.css">
     <link rel="stylesheet" href="css/index.css">
-    <meta name="theme-color" content="#2196f3">
-</head>
-<body>
-    <nav>
-        <div class="nav-wrapper blue">
-            <a href="#" class="brand-logo center">Rock Band Searcher</a>
-        </div>
-    </nav>
+  </head>
+  <body>
 
-    <main class="container">
-        <div class="row" style="margin-top: 24px;">
-            <div class="input-field col s12 m9">
-                <i class="material-icons prefix">search</i>
-                <input id="query" type="search" placeholder="Busca un grup o una cançó" autocomplete="off">
-                <!-- label left out to keep placeholder visible; prefix places icon to the left -->
-            </div>
-            <div class="col s12 m3">
-                <p>
-                    <label>
-                      <input name="type" type="radio" value="artist" checked />
-                      <span>Grups</span>
-                    </label>
-                    <label style="margin-left:12px">
-                      <input name="type" type="radio" value="recording" />
-                      <span>Cançons</span>
-                    </label>
-                </p>
-            </div>
+    <!-- Navbar -->
+    <header>
+      <nav class="blue">
+        <div class="nav-wrapper container">
+          <a href="#" class="brand-logo">Cordova+Materialize</a>
+          <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+          <ul class="right hide-on-med-and-down">
+            <li><a href="#tab1">Tab1</a></li>
+            <li><a href="#tab2">Tab2</a></li>
+            <li><a href="#tab3">Tab3</a></li>
+          </ul>
         </div>
+      </nav>
 
-        <div class="row">
-            <div class="col s12">
-                <a id="btnSearch" class="btn blue">Cercar</a>
-                <a id="btnClear" class="btn grey lighten-1">Netejar</a>
-            </div>
+      <ul class="sidenav" id="mobile-demo">
+        <li><a href="#tab1">Tab1</a></li>
+        <li><a href="#tab2">Tab2</a></li>
+        <li><a href="#tab3">Tab3</a></li>
+        <li class="divider"></li>
+        <li><a href="#">Another item</a></li>
+      </ul>
+    </header>
+
+    <!-- Tabs -->
+    <main class="container" style="padding:0;flex:1 0 auto;">
+      <div class="row">
+        <div class="col s12">
+          <ul id="tabs-swipe-demo" class="tabs">
+            <li class="tab col s4"><a href="#tab1" class="active">Home</a></li>
+            <li class="tab col s4"><a href="#tab2">Search</a></li>
+            <li class="tab col s4"><a href="#tab3">Settings</a></li>
+          </ul>
         </div>
-
-        <div class="section">
-            <h5>Resultats</h5>
-            <ul id="results" class="collection">
-            </ul>
+        <div id="tab1" class="col s12 tabs-content">
+          <div class="section">
+            <h5>Welcome</h5>
+            <p>Plantilla Cordova + Materialize integrada.</p>
+          </div>
         </div>
-
-        <div class="section">
-            <h6>Prova amb curl</h6>
-            <pre>
-# Cerca d'artista (ex. Radiohead)
-curl -G "https://musicbrainz.org/ws/2/artist" --data-urlencode "query=Radiohead" -H "User-Agent: CordovaMaterialize/1.0 (tu@email.com)" -H "Accept: application/json"
-
-# Cerca de cançó (ex. Creep)
-curl -G "https://musicbrainz.org/ws/2/recording" --data-urlencode "query=recording:Creep" -H "User-Agent: CordovaMaterialize/1.0 (tu@email.com)" -H "Accept: application/json"
-            </pre>
-            <p class="grey-text">Nota: quan proves al navegador pot aparèixer CORS; a l'app Cordova normalment funciona sense proxy.</p>
+        <div id="tab2" class="col s12 tabs-content">
+          <div class="section">
+            <h5>Search</h5>
+            <p>Contingut de la pestanya de cerca.</p>
+          </div>
         </div>
+        <div id="tab3" class="col s12 tabs-content">
+          <div class="section">
+            <h5>Settings</h5>
+            <p>Algunes opcions.</p>
+          </div>
+        </div>
+      </div>
     </main>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-    <script src="js/index.js"></script>
+    <footer class="page-footer blue">
+      <div class="container">
+        <div class="row">
+          <div class="col s12">
+            <span class="white-text">Cordova + Materialize demo</span>
+          </div>
+        </div>
+      </div>
+    </footer>
 
-</body>
+    <!--  Scripts  -->
+    <script src="js/load-cordova.js"></script>
+    <!-- Prefer CDN jQuery; local fallback handled in fallbacks.js (keeps CSP and caching clean) -->
+    <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="js/fallbacks.js"></script>
+    <script src="js/materialize.min.js"></script>
+    <script src="js/init.js"></script>
+  </body>
 </html>
