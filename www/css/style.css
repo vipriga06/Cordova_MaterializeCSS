@@ -1,0 +1,33 @@
+/* Estilos personalizados para que cada pestaña ocupe toda la pantalla */
+
+/* body fix: perquè ocupi tota la pantalla */
+html, body {
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  flex-flow: column;
+  margin: 0;
+}
+
+/* hacemos que el contenido principal crezca y sea scrollable */
+.tabs-content {
+  height: 100%;
+  overflow-y: auto !important;
+  padding-top: 10px;
+  padding-bottom: 80px; /* espacio para el FAB */
+}
+
+/* Ajustes para que la fila de tabs no empuje el contenido */
+.tabs {
+  background: #ffffff;
+}
+
+/* Asegurar que el container dentro de cada tab aproveche el ancho */
+.tabs-content .container {
+  padding-top: 16px;
+  padding-bottom: 16px;
+}
+
+/* Logo placeholder en caso de no existir imagen */
+.sidenav .circle { background: rgba(255,255,255,0.1); }

@@ -1,91 +1,103 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
   <head>
     <meta charset="utf-8">
-      <meta http-equiv="Content-Security-Policy" content="default-src 'self' https://code.jquery.com https://fonts.gstatic.com https://fonts.googleapis.com data: gap: https://ssl.gstatic.com 'unsafe-eval'; script-src 'self' https://code.jquery.com 'unsafe-inline' 'unsafe-eval'; style-src 'self' https://fonts.googleapis.com 'unsafe-inline'; media-src *; img-src 'self' data:;">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: https://ssl.gstatic.com https://fonts.gstatic.com https://cdn.jsdelivr.net https://fonts.googleapis.com 'unsafe-eval'; style-src https://cdn.jsdelivr.net https://fonts.googleapis.com 'self' 'unsafe-inline'; media-src *; img-src 'self' data: content:;">
     <meta name="format-detection" content="telephone=no">
     <meta name="msapplication-tap-highlight" content="no">
     <meta name="viewport" content="initial-scale=1, width=device-width, viewport-fit=cover">
-    <meta name="color-scheme" content="light dark">
     <title>Cordova + Materialize</title>
-
-    <!-- Icons and CSS (local copies expected in www/css) -->
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link rel="stylesheet" href="css/materialize.min.css">
-    <link rel="stylesheet" href="css/index.css">
+    <!-- Fonts Google -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+    <!-- CSS materialize -->
+    <link rel="stylesheet" href="css/materialize.min.css" />
+    <!-- CSS personalitzat -->
+    <link rel="stylesheet" href="css/style.css" media="screen,projection" />
   </head>
   <body>
 
     <!-- Navbar -->
-    <header>
-      <nav class="blue">
-        <div class="nav-wrapper container">
-          <a href="#" class="brand-logo">Cordova+Materialize</a>
-          <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
-          <ul class="right hide-on-med-and-down">
-            <li><a href="#tab1">Tab1</a></li>
-            <li><a href="#tab2">Tab2</a></li>
-            <li><a href="#tab3">Tab3</a></li>
-          </ul>
-        </div>
-      </nav>
-
-      <ul class="sidenav" id="mobile-demo">
-        <li><a href="#tab1">Tab1</a></li>
-        <li><a href="#tab2">Tab2</a></li>
-        <li><a href="#tab3">Tab3</a></li>
-        <li class="divider"></li>
-        <li><a href="#">Another item</a></li>
-      </ul>
-    </header>
-
-    <!-- Tabs -->
-    <main class="container" style="padding:0;flex:1 0 auto;">
-      <div class="row">
-        <div class="col s12">
-          <ul id="tabs-swipe-demo" class="tabs">
-            <li class="tab col s4"><a href="#tab1" class="active">Home</a></li>
-            <li class="tab col s4"><a href="#tab2">Search</a></li>
-            <li class="tab col s4"><a href="#tab3">Settings</a></li>
-          </ul>
-        </div>
-        <div id="tab1" class="col s12 tabs-content">
-          <div class="section">
-            <h5>Welcome</h5>
-            <p>Plantilla Cordova + Materialize integrada.</p>
-          </div>
-        </div>
-        <div id="tab2" class="col s12 tabs-content">
-          <div class="section">
-            <h5>Search</h5>
-            <p>Contingut de la pestanya de cerca.</p>
-          </div>
-        </div>
-        <div id="tab3" class="col s12 tabs-content">
-          <div class="section">
-            <h5>Settings</h5>
-            <p>Algunes opcions.</p>
-          </div>
-        </div>
+    <nav>
+      <div class="nav-wrapper blue darken-1">
+        <a href="#" data-target="slide-out" class="sidenav-trigger left"><i class="material-icons">menu</i></a>
+        <a href="#" class="brand-logo center">Cordova + Materialize</a>
       </div>
-    </main>
+    </nav>
 
-    <footer class="page-footer blue">
+    <!-- Sidenav (menu lateral) -->
+    <ul id="slide-out" class="sidenav">
+      <li>
+        <div class="user-view">
+          <div class="background blue darken-2"></div>
+          <a href="#user"><img class="circle" src="img/logo.png" alt="logo"></a>
+          <a href="#name"><span class="white-text name">Usuario</span></a>
+          <a href="#email"><span class="white-text email">usuario@ejemplo.com</span></a>
+        </div>
+      </li>
+      <li><a href="#tab1" class="waves-effect">Inicio</a></li>
+      <li><a href="#tab2" class="waves-effect">Listado</a></li>
+      <li><a href="#tab3" class="waves-effect">Ajustes</a></li>
+      <li><div class="divider"></div></li>
+      <li><a class="subheader">Opciones</a></li>
+      <li><a class="waves-effect" href="#">Acerca</a></li>
+    </ul>
+
+    <!-- Tabs (swipeable) -->
+    <div class="row" style="margin-bottom:0">
+      <div class="col s12">
+        <ul id="tabs-swipe-demo" class="tabs">
+          <li class="tab col s4"><a href="#tab1">Inicio</a></li>
+          <li class="tab col s4"><a href="#tab2">Listado</a></li>
+          <li class="tab col s4"><a href="#tab3">Ajustes</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Contenido de las pestañas -->
+    <div id="tab1" class="col s12 tabs-content">
       <div class="container">
-        <div class="row">
-          <div class="col s12">
-            <span class="white-text">Cordova + Materialize demo</span>
-          </div>
-        </div>
+        <h4>Bienvenido</h4>
+        <p>Esta es la sección Inicio. Aquí va contenido introductorio de la app Cordova con Materialize.</p>
       </div>
-    </footer>
+    </div>
 
-    <!--  Scripts  -->
-    <script src="js/load-cordova.js"></script>
-    <!-- Prefer CDN jQuery; local fallback handled in fallbacks.js (keeps CSP and caching clean) -->
-    <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-    <script src="js/fallbacks.js"></script>
+    <div id="tab2" class="col s12 tabs-content">
+      <div class="container">
+        <h4>Listado</h4>
+        <ul class="collection">
+          <li class="collection-item">Elemento 1</li>
+          <li class="collection-item">Elemento 2</li>
+          <li class="collection-item">Elemento 3</li>
+        </ul>
+      </div>
+    </div>
+
+    <div id="tab3" class="col s12 tabs-content">
+      <div class="container">
+        <h4>Ajustes</h4>
+        <p>Opciones y configuración de la aplicación.</p>
+        <a class="waves-effect waves-light btn"><i class="material-icons left">settings</i>Configurar</a>
+      </div>
+    </div>
+
+    <!-- Floating Action Button -->
+    <div class="fixed-action-btn">
+      <a class="btn-floating btn-large red">
+        <i class="large material-icons">add</i>
+      </a>
+      <ul>
+        <li><a class="btn-floating green"><i class="material-icons">cloud</i></a></li>
+        <li><a class="btn-floating blue"><i class="material-icons">edit</i></a></li>
+        <li><a class="btn-floating yellow darken-1"><i class="material-icons">settings</i></a></li>
+      </ul>
+    </div>
+
+    <!-- cordova lib -->
+    <script src="cordova.js"></script>
+    <!-- Compiled and minified JavaScript (Materialize) -->
     <script src="js/materialize.min.js"></script>
-    <script src="js/init.js"></script>
+    <!-- init JS -->
+    <script src="js/index.js"></script>
+
   </body>
 </html>
